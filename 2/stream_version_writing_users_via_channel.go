@@ -78,6 +78,7 @@ func writeUser(ctx context.Context, w io.Writer, in chan User) chan error {
 
 func main() {
 	// a byte.BufferP{} is an io.Writer. using this to avoid making files on disk
+	// buffer types implements i/o package interface.
 	buff := &bytes.Buffer{}
 
 	// send our User records to be written via in.
