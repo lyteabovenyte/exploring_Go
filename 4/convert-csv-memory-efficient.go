@@ -1,53 +1,51 @@
-// stram the content using bufio package and bufio scanners.
 package main
 
 import (
 	"bufio"
 	"bytes"
+	"errors"
 	"fmt"
-	"strings"
 )
 
-// fakeFile represents a file's content.
+type record [][]byte
+
+var comma = []byte(`,`)
+
 var fakeFile = &bytes.Buffer{}
 
-const fakeContent = `
+var fakeContent = `
 Amir, Alaeifar
 Happy, Person
-motivated, Person
+Another, Happy
 `
-
-type record []string
 
 func (r record) validate() error {
 	if len(r) != 2 {
-		return fmt.Errorf("data format is incorrect")
+		return errors.New("data format is incorrect")
 	}
 	return nil
 }
 
-func (r record) first() string {
+func (r record) first() []byte {
 	return r[0]
 }
 
-func (r record) last() string {
+func (r record) last() []byte {
 	return r[1]
 }
 
 func readRecs() ([]record, error) {
-
 	scanner := bufio.NewScanner(fakeFile)
 
 	var records []record
-	lineNum := 0
-	for scanner.Scan() { // Scan's default is scanning by line.
-		line := scanner.Text()
-		// skip empty lines
-		if strings.TrimSpace(line) == "" {
+	for scanner.Scan() {
+		line := scanner.Bytes()
+		// skip the empty files
+		if len(bytes.TrimSpace(line)) == 0 {
 			continue
 		}
-
-		var rec record = strings.Split(line, ",") // split by delimiter on the file which is ,
+		lineNum := 0
+		var rec record = bytes.Split(line, comma)
 		if err := rec.validate(); err != nil {
 			return nil, fmt.Errorf("entry at line %d was invalid: %w", lineNum, err)
 		}
@@ -58,14 +56,13 @@ func readRecs() ([]record, error) {
 }
 
 func main() {
-	// create our fakeFile
 	fakeFile.WriteString(fakeContent)
 
 	recs, err := readRecs()
 	if err != nil {
 		panic(err)
 	}
-	for _, rec := range recs {
-		fmt.Printf("Name: %s, Last: %s\n", rec.first(), rec.last())
+	for _, recs := range recs {
+		fmt.Printf("FirstName: %s, LastName: %s\n", recs.first(), recs.last())
 	}
 }
