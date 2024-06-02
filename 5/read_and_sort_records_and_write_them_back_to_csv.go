@@ -1,4 +1,4 @@
-// if we want to read and sort the records
+// if we want to read and sort the records and handle missing records
 // and also convert them back to csv in another file.
 package main
 
@@ -21,7 +21,7 @@ func (r record) last() string {
 }
 
 func (r record) csv() []byte {
-	b := bytes.Buffer{}
+	b := bytes.Buffer{} // creating a buffer for each record, then returning the Bytes of that record to write to a file.
 	for _, field := range r {
 		b.WriteString(field + ",")
 	}
@@ -37,7 +37,12 @@ func writeRecs(recs []record) error {
 	defer file.Close()
 
 	// sort the recs by their last name
-	sort.Slice(recs, func(i, j int) bool { return recs[i].last() < recs[j].last() })
+	sort.Slice(recs, func(i, j int) bool {
+		if len(recs[i]) > 0 && len(recs[j]) > 0 {
+			return recs[i].last() < recs[j].last()
+		}
+		return false
+	})
 
 	for _, rec := range recs {
 		_, err := file.Write(rec.csv())
@@ -54,15 +59,16 @@ func main() {
 		record{"Amir", "Alaeifar"},
 		record{"Happy", "Person"},
 		record{"Another", "One"},
+		record{},
 	}
 
 	if err := writeRecs(recs); err != nil {
-		panic(err)
+		log.Printf("an error happende: %v", err)
 	}
 
 	data, err := os.ReadFile("data-sorted.csv")
 	if err != nil {
-		panic(err)
+		log.Printf("and error happended: %v", err)
 	}
 	fmt.Printf("%s", data)
 }
