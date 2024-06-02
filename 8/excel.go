@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lyteabovenyte/exploring_Go/8/chart.go"
+	"github.com/lyteabovenyte/exploring_Go/8/internal_package/chart"
 
 	"github.com/xuri/excelize/v2"
 )
