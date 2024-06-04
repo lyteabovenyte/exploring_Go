@@ -1,3 +1,11 @@
+// difference between prepared statement and raw statement and querying:
+// In general a prepared statement 
+// 1. gets prepared with the server (SQL parsed, execution plan generated, etc.), 
+// 2. is executed with the additional parameters 
+// 3. is closed. It lets you reuse the same SQL with different parameters passed in each time,
+// it can help guard against SQL injection, may provide some performance enhancements (driver/protocol specific,
+// YMMV) and prevent repeated steps, as in execution plan generation and SQL parsing in the prepare step above.
+
 package main
 
 import (
