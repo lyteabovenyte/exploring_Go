@@ -1,3 +1,5 @@
+// send message to the server using
+// >>> echo -n "who are you?" | nc localhost 8888
 package main
 
 import (
