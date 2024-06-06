@@ -8,7 +8,7 @@ import (
 	// pb "github.com/lyteabovenyte/exploring_go/grpc/proto"
 )
 
-var addr = flag.String("addr", "127.0.0.1:80", "The address to run on.")
+var addr = flag.String("addr", "127.0.0.1:2562", "The address to run on.")
 
 func main() {
 	flag.Parse()

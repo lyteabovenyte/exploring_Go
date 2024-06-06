@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	addr   = flag.String("addr", "127.0.0.1:80", "The address of the server.")
+	addr   = flag.String("addr", "127.0.0.1:2562", "The address of the server.")
 	author = flag.String("author", "", "The author whose quote to get")
 )
 
