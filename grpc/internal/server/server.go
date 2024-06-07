@@ -30,17 +30,17 @@ func New(addr string) (*API, error) {
 	a := &API{
 		addr: addr,
 		quotes: map[string][]string{
-			"Mark Twain": {
-				"History doesn't repeat itself, but it does rhyme",
-				"Lies, damned lies, and statistics",
-				"Golf is a good walk spoiled",
+			"Amir Alaeifar": {
+				"Get the easy 80% done? I want it all.",
+				"No excuses accepted.",
+				"Fight for yourself.",
 			},
-			"Benjamin Franklin": {
-				"Tell me and I forget. Teach me and I remember. Involve me and I learn",
-				"I didn't fail the test. I just found 100 ways to do it wrong",
+			"mohammad hossein seyfi": {
+				"Chamassen, is a Lifestyle, not just a State",
+				"They were just Humans at first, it'll come contineously",
 			},
-			"Eleanor Roosevelt": {
-				"The future belongs to those who believe in the beauty of their dreams",
+			"Unknown": {
+				"LinkedIn just a social media, Don't take it seriously.",
 			},
 		},
 		grpcServer: grpc.NewServer(opts...),
