@@ -11,6 +11,8 @@ require (
 )
 
 require (
+	github.com/google/goexpect v0.0.0-20210430020637-ab937bf7fd6f // indirect
+	github.com/google/goterm v0.0.0-20190703233501-fc88cf888a3f // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.14.3 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
