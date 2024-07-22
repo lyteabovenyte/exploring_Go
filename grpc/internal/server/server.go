@@ -30,17 +30,15 @@ func New(addr string) (*API, error) {
 	a := &API{
 		addr: addr,
 		quotes: map[string][]string{
-			"Amir Alaeifar": {
-				"Get the easy 80% done? I want it all.",
-				"No excuses accepted.",
-				"Fight for yourself.",
+			"mo seif": {
+				"donya sar e jang dare.",
 			},
 			"mohammad hossein seyfi": {
 				"Chamassen, is a Lifestyle, not just a State",
-				"They were just Humans at first, it'll come contineously",
+				"ina ham avvalesh adam bodan, kam kam injori shodan",
 			},
-			"Unknown": {
-				"LinkedIn just a social media, Don't take it seriously.",
+			"mo seyf": {
+				"LinkedIn o daryab",
 			},
 		},
 		grpcServer: grpc.NewServer(opts...),
