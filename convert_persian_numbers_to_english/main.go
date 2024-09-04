@@ -7,37 +7,31 @@ import (
 )
 
 func main() {
-	num := "۱۲۳۴"
+	num := "۰۹۳۷۲۸۲۸۰۰۸"
 
-	result := strings.Map(func(r rune) rune {
-		switch r {
-		case '۱':
-			return '1'
-		case '۲':
-			return '2'
-		case '۳':
-			return '3'
-		case '۴':
-			return '4'
-		case '۵':
-			return '5'
-		case '۶':
-			return '6'
-		case '۷':
-			return '7'
-		case '۸':
-			return '8'
-		case '۹':
-			return '9'
-		case '۰':
-			return '0'
+	mapper := map[rune]rune{
+		'۱': '1',
+		'۲': '2',
+		'۳': '3',
+		'۴': '4',
+		'۵': '5',
+		'۶': '6',
+		'۷': '7',
+		'۸': '8',
+		'۹': '9',
+		'۰': '0',
+	}
+
+	converted_string := strings.Map(func(r rune) rune {
+		if c, ok := mapper[r]; ok {
+			return c
 		}
 		return r
 	}, num)
 
-	actual_number, err := strconv.Atoi(result)
+	converted_number, err := strconv.Atoi(converted_string)
 	if err != nil {
-		fmt.Println("discovered unknown character")
+		fmt.Println("error converting", converted_string)
 	}
-	fmt.Println(actual_number)
+	fmt.Println(converted_number)
 }
