@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -34,5 +35,9 @@ func main() {
 		return r
 	}, num)
 
-	fmt.Println(result)
+	actual_number, err := strconv.Atoi(result)
+	if err != nil {
+		fmt.Println("discovered unknown character")
+	}
+	fmt.Println(actual_number)
 }
